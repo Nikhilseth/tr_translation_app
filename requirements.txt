@@ -1,3 +1,6 @@
 langchain==0.3.0
 langserve==0.3.0
 langsmith==0.1.127
+langchain-openai==0.2.0
+fastapi==0.115.0
+python-dotenv==1.0.1
