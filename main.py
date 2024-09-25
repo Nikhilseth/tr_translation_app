@@ -1,4 +1,5 @@
 from dotenv import load_dotenv
+from langchain_openai import ChatOpenAI
 from chains.response.response_chain import get_combined_response_chain
 
 # import langchain
@@ -10,13 +11,14 @@ from chains.response.response_chain import get_combined_response_chain
 # import langsmith
 # import langserve
 
-# detect tone. Have tone as input. Translate from detected tone to output tone.
+# add routes here. move model to chain parameter.
 
 load_dotenv()
 input_phrase = "Il fait une belle journée dehors ! On va à la plage ?"
 output_tone = "formal"
 
-combined_chain = get_combined_response_chain()
+model = ChatOpenAI(model="gpt-4o-mini", temperature=0)
+combined_chain = get_combined_response_chain(model)
 
 output = combined_chain.invoke({"input_phrase": input_phrase, "output_tone": output_tone})
 print(output)

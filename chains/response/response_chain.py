@@ -5,7 +5,7 @@ from chains.translate.translate import get_translation_chain
 from chains.detect_tone.detect_tone import get_detect_tone_chain
 
 
-def get_combined_response_chain():
+def get_combined_response_chain(model):
     return (
         RunnablePassthrough()
         | {
@@ -15,17 +15,17 @@ def get_combined_response_chain():
         | {
             "input_phrase": itemgetter("input_phrase"),
             "output_tone": itemgetter("output_tone"),
-            "detected_language": get_detect_language_chain()
+            "detected_language": get_detect_language_chain(model)
         } | {
             "input_phrase": itemgetter("input_phrase"),
             "output_tone": itemgetter("output_tone"),
             "detected_language": itemgetter("detected_language"),
-            "detected_tone": get_detect_tone_chain()
+            "detected_tone": get_detect_tone_chain(model)
         }
         | {
             "input_phrase": itemgetter("input_phrase"),
             "output_tone": itemgetter("output_tone"),
             "detected_language": itemgetter("detected_language"),
             "detected_tone": itemgetter("detected_tone"),
-            "translation_output": get_translation_chain()
+            "translation_output": get_translation_chain(model)
         })
