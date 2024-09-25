@@ -1,4 +1,5 @@
 import os
+from langchain_core.output_parsers import PydanticOutputParser
 from langchain_core.prompts.chat import ChatPromptTemplate
 from pydantic import BaseModel, Field
 from chains.prompt_loader import read_prompt_file
@@ -14,4 +15,4 @@ def get_translation_chain(model):
     prompt = ChatPromptTemplate.from_messages([("system", read_prompt_file(prompt_file)),
                                                ("human", "{{input_phrase}}")],
                                               template_format="jinja2")
-    return prompt | model
+    return prompt | model| PydanticOutputParser(pydantic_object=TranslationOutput)
