@@ -7,7 +7,7 @@ from chains.prompt_loader import read_prompt_file
 
 class DetectLanguageOutput(BaseModel):
     detected_language: str = Field(description="Detected Language")
-    reasoning: str = Field(description="Detected Language")
+    reasoning: str = Field(description="Decision Reasoning")
 
 
 def get_detect_language_chain():

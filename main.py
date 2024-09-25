@@ -13,9 +13,10 @@ from chains.response.response_chain import get_combined_response_chain
 # detect tone. Have tone as input. Translate from detected tone to output tone.
 
 load_dotenv()
-input_phrase = "parles-tu français?"
+input_phrase = "Il fait une belle journée dehors ! On va à la plage ?"
+output_tone = "formal"
 
 combined_chain = get_combined_response_chain()
 
-output = combined_chain.invoke({"input_phrase": input_phrase})
+output = combined_chain.invoke({"input_phrase": input_phrase, "output_tone": output_tone})
 print(output)
