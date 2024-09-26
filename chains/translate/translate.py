@@ -2,6 +2,7 @@ import os
 from langchain_core.output_parsers import PydanticOutputParser
 from langchain_core.prompts.chat import ChatPromptTemplate
 from pydantic import BaseModel, Field
+
 from chains.prompt_loader import read_prompt_file
 
 

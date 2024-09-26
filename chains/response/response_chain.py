@@ -1,11 +1,13 @@
-from itertools import chain
 from operator import itemgetter
-from langchain_core.runnables import RunnablePassthrough, RunnableLambda
+from langchain_core.runnables import RunnablePassthrough
+from langsmith import traceable
+
 from chains.detect_language.detect_language import get_detect_language_chain
 from chains.translate.translate import get_translation_chain
 from chains.detect_tone.detect_tone import get_detect_tone_chain
 
 
+@traceable()
 def get_combined_response_chain(model):
     return (
         RunnablePassthrough()
