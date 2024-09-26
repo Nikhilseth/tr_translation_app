@@ -24,9 +24,9 @@ def get_combined_response_chain(model):
             "detected_language": itemgetter("detected_language"),
             "detected_tone": get_detect_tone_chain(model)
         } | {
-            "input_phrase": itemgetter("input_phrase"),
-            "output_tone": itemgetter("output_tone"),
+            "translation_output": get_translation_chain(model),
             "detected_language": itemgetter("detected_language"),
             "detected_tone": itemgetter("detected_tone"),
-            "translation_output": get_translation_chain(model)
+            "input_phrase": itemgetter("input_phrase"),
+            "output_tone": itemgetter("output_tone")
         })
